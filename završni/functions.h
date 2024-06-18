@@ -46,6 +46,6 @@ void resetGameData(Game* game);
 void displayResults(const Game* game);
 int comparePlayers(const void* a, const void* b);
 void sortPlayersByWins(Game* game);
+void searchPlayerByName(Game* game);
 void clearInputBuffer();
-Player* findPlayerByName(const char* name, Player players[], int numPlayers);
-void isPlayerFound();
+Player* linearSearchPlayerByName(const char* name, Player players[], int numPlayers);
