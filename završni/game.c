@@ -131,26 +131,25 @@ void displayResults(const Game* game) {
     printf("%s: %u pobjeda\n", game->player2.name, game->player2.wins);
 }
 
-Player* findPlayerByName(const char* name, Player players[], int numPlayers) {
-    Player key;
-    strcpy(key.name, name);
-
-  
-    qsort(players, numPlayers, sizeof(Player), comparePlayers);
-
-    
-    Player* foundPlayer = (Player*)bsearch(&key, players, numPlayers, sizeof(Player), comparePlayers);
-
-    return foundPlayer;
+Player* linearSearchPlayerByName(const char* name, Player* player1,Player* player2) {
+    if (strcmp(player1->name, name) == 0) {
+        return player1;
+    }
+    else if (strcmp(player2->name, name) == 0) {
+        return player2;
+    }
+    return NULL;
 }
 
-void isPlayerFound() {
+void searchPlayerByName(Game* game) {
+    if (game == NULL) return;
+
     char searchName[50];
     printf("Unesite ime igraca za pretragu: ");
     fgets(searchName, sizeof(searchName), stdin);
-    searchName[strcspn(searchName, "\n")] = '\0'; 
+    searchName[strcspn(searchName, "\n")] = '\0';
 
-    Player* foundPlayer = findPlayerByName(searchName, (Player[]) { game.player1, game.player2 }, 2);
+    Player* foundPlayer = linearSearchPlayerByName(searchName, &game->player1, &game->player2);
     if (foundPlayer != NULL) {
         printf("Pronadjen igrac: %s, broj pobjeda: %u\n", foundPlayer->name, foundPlayer->wins);
     }
@@ -158,3 +157,4 @@ void isPlayerFound() {
         printf("Nije pronadjen igrac sa imenom: %s\n", searchName);
     }
 }
+
