@@ -59,7 +59,7 @@ int main() {
             system("cls");
             break;
         case PRETRAGA_IGRACA_PO_IMENU:
-            isPlayerFound();
+ searchPlayerByName(game);
             clearInputBuffer();
             system("cls");
             break;
