@@ -1,0 +1,2 @@
+dejan 0
+josip 1
